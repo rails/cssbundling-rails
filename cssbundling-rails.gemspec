@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.authors     = [ "David Heinemeier Hansson", "Dom Christie" ]
   spec.email       = "david@loudthinking.com"
   spec.homepage    = "https://github.com/rails/cssbundling-rails"
-  spec.summary     = "Bundle and process CSS in Rails with Tailwind, PostCSS, and Sass via Node.js."
+  spec.summary     = "Bundle and process CSS with Tailwind, PostCSS, or Sass in Rails via Node.js."
   spec.license     = "MIT"
 
   spec.files = Dir["lib/**/*", "MIT-LICENSE", "README.md"]
