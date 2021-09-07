@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+VERSION=$1
+
+printf "module Cssbundling\n  VERSION = \"$VERSION\"\nend\n" > ./lib/cssbundling/version.rb
+bundle
+git add Gemfile.lock lib/cssbundling/version.rb
+git commit -m "Bump version for $VERSION"
+git push
+git tag v$VERSION
+git push --tags
+gem build cssbundling-rails.gemspec
+gem push "cssbundling-rails-$VERSION.gem" --host https://rubygems.org
+rm "cssbundling-rails-$VERSION.gem"
