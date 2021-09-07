@@ -2,6 +2,6 @@
   "name": "app",
   "private": "true",
   "scripts": {
-    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tw.css -o ./app/assets/builds/application.css"
+    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css"
   }
 }
