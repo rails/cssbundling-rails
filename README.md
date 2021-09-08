@@ -15,7 +15,7 @@ You can configure your bundler options in the `build:css` script in `package.jso
 
 ## Installation
 
-You must already have node and yarn installed on your system. Then:
+You must already have node and yarn installed on your system. You will also need npx version 7.1.0 or later. Then:
 
 1. Add `cssbundling-rails` to your Gemfile with `gem 'cssbundling-rails'`
 2. Run `./bin/bundle install`
