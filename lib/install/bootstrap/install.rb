@@ -5,6 +5,4 @@ copy_file "#{__dir__}/application.scss", "app/assets/stylesheets/application.scs
 run "yarn add bootstrap@5.0.0-beta2"
 run "yarn add @popperjs/core@2.0.0-alpha.1"
 
-# todo fix:
-# say "Add build:css script"
-# run %(npm set-script build:css "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css")
+run %(npm set-script build:css "sass ./app/assets/stylesheets/application.scss ./app/assets/builds/application.css --no-source-map")
