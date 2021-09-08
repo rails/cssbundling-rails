@@ -4,7 +4,7 @@ keep_file "app/assets/builds"
 append_to_file "app/assets/config/manifest.js", %(//= link_tree ../builds\n)
 
 if Rails.root.join(".gitignore").exist?
-  append_to_file(".gitignore", %(/app/assets/builds\n))
+  append_to_file(".gitignore", %(/app/assets/builds\n!/app/assets/builds/.keep\n))
 end
 
 say "Remove app/assets/stylesheets/application.css so build output can take over"
