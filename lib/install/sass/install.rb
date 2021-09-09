@@ -3,4 +3,4 @@ copy_file "#{__dir__}/application.sass.scss", "app/assets/stylesheets/applicatio
 run "yarn add sass"
 
 say "Add build:css script"
-run %(npm set-script build:css "sass ./app/assets/stylesheets/application.sass.scss ./app/assets/builds/application.css --no-source-map")
+run %(npm set-script build:css "sass ./app/assets/stylesheets/application.sass.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules")
