@@ -1,5 +1,5 @@
 say "Install Bootstrap with Popperjs/core"
-copy_file "#{__dir__}/bootstrap_js_files.js", "bootstrap.js"
+copy_file "#{__dir__}/bootstrap.js", "bootstrap.js"
 copy_file "#{__dir__}/application.scss", "app/assets/stylesheets/application.scss"
 
 run "yarn add bootstrap@latest"
