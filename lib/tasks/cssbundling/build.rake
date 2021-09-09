@@ -6,4 +6,4 @@ namespace :css do
 end
 
 Rake::Task["assets:precompile"].enhance(["css:build"])
-Rake::Task["test:prepare"].enhance(["css:build"])
+Rake::Task["test:prepare"].enhance(["css:build"]) if Rake::Task.task_defined?("test:prepare")
