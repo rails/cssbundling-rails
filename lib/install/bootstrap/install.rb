@@ -6,9 +6,9 @@ run "yarn add sass bootstrap @popperjs/core"
 
 if Rails.root.join("app/javascript/application.js").exist?
   say "Appending Bootstrap JavaScript import to default entry point"
-  append_to_file "app/javascript/application.js", %(import "./bootstrap"\n)
+  append_to_file "app/javascript/application.js", %(import * as bootstrap from "bootstrap"\n)
 else
-  say %(Add import "./bootstrap" to your entry point JavaScript file), :red
+  say %(Add import * as bootstrap from "bootstrap" to your entry point JavaScript file), :red
 end
 
 say "Add build:css script"
