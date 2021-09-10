@@ -1,7 +1,6 @@
 say "Install Bootstrap with Popperjs/core"
 copy_file "#{__dir__}/application.bootstrap.scss",
    "app/assets/stylesheets/application.bootstrap.scss"
-copy_file "#{__dir__}/bootstrap.js", "app/javascript/bootstrap.js"
 run "yarn add sass bootstrap @popperjs/core"
 
 if Rails.root.join("app/javascript/application.js").exist?
