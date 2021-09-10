@@ -24,6 +24,5 @@ namespace :css do
     task bootstrap: "css:install:shared" do
       system "#{RbConfig.ruby} ./bin/rails app:template LOCATION=#{File.expand_path("../../install/bootstrap/install.rb",  __dir__)}"
     end
-
   end
 end
