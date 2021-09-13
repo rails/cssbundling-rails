@@ -13,6 +13,15 @@ end
 say "Remove app/assets/stylesheets/application.css so build output can take over"
 remove_file "app/assets/stylesheets/application.css"
 
+if (app_layout_path = Rails.root.join("app/views/layouts/application.html.erb")).exist?
+  say "Add stylesheet link tag in application layout"
+  insert_into_file app_layout_path.to_s,
+    %(\n    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>), before: /\s*<\/head>/
+else
+  say "Default application.html.erb is missing!", :red
+  say %(        Add <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %> within the <head> tag in your custom layout.)
+end
+
 unless Rails.root.join("package.json").exist?
   say "Add default package.json"
   copy_file "#{__dir__}/package.json", "package.json"
