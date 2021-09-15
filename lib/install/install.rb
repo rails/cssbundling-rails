@@ -7,7 +7,8 @@ say "Stop linking stylesheets automatically"
 gsub_file "app/assets/config/manifest.js", "//= link_directory ../stylesheets .css", ""
 
 if Rails.root.join(".gitignore").exist?
-  append_to_file(".gitignore", %(/app/assets/builds/*\n!/app/assets/builds/.keep\n))
+  append_to_file(".gitignore", %(\n/app/assets/builds/*\n!/app/assets/builds/.keep\n))
+  append_to_file(".gitignore", %(\n/node_modules\n))
 end
 
 say "Remove app/assets/stylesheets/application.css so build output can take over"
