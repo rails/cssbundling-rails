@@ -4,7 +4,7 @@ keep_file "app/assets/builds"
 append_to_file "app/assets/config/manifest.js", %(//= link_tree ../builds\n)
 
 say "Stop linking stylesheets automatically"
-gsub_file "app/assets/config/manifest.js", "//= link_directory ../stylesheets .css", ""
+gsub_file "app/assets/config/manifest.js", "//= link_directory ../stylesheets .css\n", ""
 
 if Rails.root.join(".gitignore").exist?
   append_to_file(".gitignore", %(\n/app/assets/builds/*\n!/app/assets/builds/.keep\n))
