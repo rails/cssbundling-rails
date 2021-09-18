@@ -24,5 +24,10 @@ namespace :css do
     task bootstrap: "css:install:shared" do
       system "#{RbConfig.ruby} ./bin/rails app:template LOCATION=#{File.expand_path("../../install/bootstrap/install.rb",  __dir__)}"
     end
+
+    desc "Install Bulma"
+    task bulma: "css:install:shared" do
+      system "#{RbConfig.ruby} ./bin/rails app:template LOCATION=#{File.expand_path("../../install/bulma/install.rb",  __dir__)}"
+    end
   end
 end
