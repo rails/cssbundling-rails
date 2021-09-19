@@ -4,10 +4,10 @@ keep_file "app/assets/builds"
 
 if (sprockets_manifest_path = Rails.root.join("app/assets/config/manifest.js")).exist?
   append_to_file sprockets_manifest_path, %(//= link_tree ../builds\n)
-end
 
-say "Stop linking stylesheets automatically"
-gsub_file "app/assets/config/manifest.js", "//= link_directory ../stylesheets .css\n", ""
+  say "Stop linking stylesheets automatically"
+  gsub_file "app/assets/config/manifest.js", "//= link_directory ../stylesheets .css\n", ""
+end
 
 if Rails.root.join(".gitignore").exist?
   append_to_file(".gitignore", %(\n/app/assets/builds/*\n!/app/assets/builds/.keep\n))
