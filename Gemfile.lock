@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    cssbundling-rails (0.1.8)
+    cssbundling-rails (0.2.0)
       railties (>= 6.0.0)
       sprockets-rails (>= 2.0.0)
 
