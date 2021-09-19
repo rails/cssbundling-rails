@@ -1,7 +1,10 @@
 say "Build into app/assets/builds"
 empty_directory "app/assets/builds"
 keep_file "app/assets/builds"
-append_to_file "app/assets/config/manifest.js", %(//= link_tree ../builds\n)
+
+if (sprockets_manifest_path = Rails.root.join("app/assets/config/manifest.js")).exist?
+  append_to_file sprockets_manifest_path, %(//= link_tree ../builds\n)
+end
 
 say "Stop linking stylesheets automatically"
 gsub_file "app/assets/config/manifest.js", "//= link_directory ../stylesheets .css\n", ""
