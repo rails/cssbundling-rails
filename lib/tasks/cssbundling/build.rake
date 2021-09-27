@@ -1,7 +1,9 @@
 namespace :css do
   desc "Build your CSS bundle"
   task :build do
-    system "yarn install && yarn build:css"
+    unless system "yarn install && yarn build:css"
+      raise "cssbundling-rails: Command css:build failed, ensure yarn is installed and `yarn build:css` runs without errors"
+    end
   end
 end
 
