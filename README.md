@@ -25,6 +25,11 @@ You must already have node and yarn installed on your system. You will also need
 
 Or, in Rails 7+, you can preconfigure your new application to use a specific bundler with `rails new myapp --css [tailwind|bootstrap|bulma|postcss|sass]`.
 
+## Usage
+
+### Tailwind
+
+To benefit from Tailwind JIT's auto-recompiling, you need to have an additional watch process running. You can run `./bin/rails server` in one terminal tab and `yarn build:css --watch` in another. Or you can take full use of the appended `Procfile.dev`, which enables to run both watch processes with a single command. Run `./bin/dev` instead of `./bin/rails server`.
 
 ## License
 
