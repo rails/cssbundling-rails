@@ -1,3 +1,11 @@
+/*
+ * Ensure @import statements are placed at the top of this file, ahead of @tailwind statements.
+ */
+
+/* Import ActionText styling here if required. The "require trix" statement in actiontext.css no longer works. */
+/* @import 'actiontext';  */
+/* @import 'trix.css';    */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
