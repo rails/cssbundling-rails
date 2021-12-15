@@ -6,7 +6,7 @@ You develop using this approach by running the bundler in watch mode in a termin
 
 Whenever the bundler detects changes to any of the stylesheet files in your project, it'll bundle `app/assets/stylesheets/application.[bundler].css` into `app/assets/builds/application.css`. This build output takes over from the regular asset pipeline default file. So you continue to refer to the build output in your layout using the standard asset pipeline approach with `<%= stylesheet_link_tag "application" %>`.
 
-When you deploy your application to production, the `css:build` task attaches to the `assets:precompile` task to ensure that all your package dependencies from `package.json` have been installed via yarn, and then runs `yarn build:css` to process your stylesheet entrypoint, as it would in development. This output is then picked up by the asset pipeline, digested, and copied into public/assets, as any other asset pipeline file.
+When you deploy your application to production, the `css:build` task attaches to the `assets:precompile` task to run `yarn build:css` to process your stylesheet entrypoint, as it would in development. This output is then picked up by the asset pipeline, digested, and copied into public/assets, as any other asset pipeline file.
 
 This also happens in testing where the bundler attaches to the `test:prepare` task to ensure the stylesheets have been bundled before testing commences. (Note that this currently only applies to rails `test:*` tasks (like `test:all` or `test:controllers`), not "rails test", as that doesn't load `test:prepare`).
 
@@ -29,6 +29,15 @@ Or, in Rails 7+, you can preconfigure your new application to use a specific bun
 
 
 ## FAQ
+
+### Do I need to run `yarn install` during deployment or CI?
+
+`yarn install` is not automatically run for any environment, so yes, you'll need to run it on your own, just like you already run `bundle install`. Alternatively, you may use the deprecated `yarn:install` task (or define your own) and then make `css:build` depend on it:
+
+```ruby
+# lib/tasks/yarn.rake
+Rake::Task["css:build"].enhance(["yarn:install"])
+```
 
 ### How do I import relative CSS files with Tailwind?
 
