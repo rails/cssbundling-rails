@@ -4,7 +4,7 @@ copy_file "#{__dir__}/application.tailwind.css", "app/assets/stylesheets/applica
 run "yarn add tailwindcss@latest postcss@latest autoprefixer@latest"
 
 say "Add build:css script"
-build_script = "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css"
+build_script = "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
 
 if (`npx -v`.to_f < 7.1 rescue "Missing")
   say %(Add "scripts": { "build:css": "#{build_script}" } to your package.json), :green
