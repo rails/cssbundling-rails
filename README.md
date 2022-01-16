@@ -10,7 +10,7 @@ When you deploy your application to production, the `css:build` task attaches to
 
 This also happens in testing where the bundler attaches to the `test:prepare` task to ensure the stylesheets have been bundled before testing commences. (Note that this currently only applies to rails `test:*` tasks (like `test:all` or `test:controllers`), not "rails test", as that doesn't load `test:prepare`).
 
-If your test framework does not define a `test:prepare` Rake task, ensure that your test framework runs `css:build` to bundle stylesheets before testing commences.
+If your test framework does not define a `test:prepare` Rake task, ensure that your test framework runs `css:build` to bundle stylesheets before testing commences. If your setup uses [jsbundling-rails](https://github.com/rails/jsbundling-rails) (ie, esbuild + tailwind), you will also need to run `javascript:build`.
 
 That's it!
 
