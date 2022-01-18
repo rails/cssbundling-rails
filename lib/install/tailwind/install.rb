@@ -7,7 +7,7 @@ say "Add build:css script"
 build_script = "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
 
 if (`npx -v`.to_f < 7.1 rescue "Missing")
-  say %(Add "scripts": { "build:css": "#{build_script}" } to your package.json), :green
+  say %(Add "scripts": { "build:css": "#{build_script}" } to your package.json), :red
 else
   run %(npm set-script build:css "#{build_script}")
   run %(yarn build:css)
