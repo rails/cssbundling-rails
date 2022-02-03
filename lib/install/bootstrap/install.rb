@@ -1,7 +1,13 @@
-say "Install Bootstrap with Popperjs/core"
+say "Install Bootstrap with Bootstrap Icons and Popperjs/core"
 copy_file "#{__dir__}/application.bootstrap.scss",
    "app/assets/stylesheets/application.bootstrap.scss"
-run "yarn add sass bootstrap @popperjs/core"
+run "yarn add sass bootstrap bootstrap-icons @popperjs/core"
+
+inject_into_file "config/initializers/assets.rb", after: /.*Rails.application.config.assets.paths.*\n/ do
+  <<~RUBY
+    Rails.application.config.assets.paths << Rails.root.join("node_modules/bootstrap-icons/font")
+  RUBY
+end
 
 if Rails.root.join("app/javascript/application.js").exist?
   say "Appending Bootstrap JavaScript import to default entry point"
