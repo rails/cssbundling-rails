@@ -30,6 +30,10 @@ Or, in Rails 7+, you can preconfigure your new application to use a specific bun
 
 ## FAQ
 
+### How does this compare to tailwindcss-rails and dartsass-rails?
+
+If you're already relying on Node to process your JavaScript, this gem is the way to go. But if you're using [the default import map setup in Rails 7+](https://github.com/rails/importmap-rails/), you can avoid having to deal with Node at all by using the standalone versions of Tailwind CSS and Dart Sass that are available through [tailwindcss-rails](https://github.com/rails/tailwindcss-rails/) and [dartsass-rails](https://github.com/rails/dartsass-rails/). It's simpler, fewer moving parts, and still has all the functionality.
+
 ### How do I import relative CSS files with Tailwind?
 
 If you want to use `@import` statements as part of your Tailwind application.js file, you need to [configure Tailwind to use `postcss` and then `postcss-import`](https://tailwindcss.com/docs/using-with-preprocessors#build-time-imports). But you should also consider simply referring to your other CSS files directly, instead of bundling them all into one big file. It's better for caching, and it's simpler to setup. You can refer to other CSS files by expanding the `stylesheet_link_tag` in `application.html.erb` like so: `<%= stylesheet_link_tag "application", "other", "styles", "data-turbo-track": "reload" %>`.
