@@ -3,10 +3,14 @@ copy_file "#{__dir__}/application.bootstrap.scss",
    "app/assets/stylesheets/application.bootstrap.scss"
 run "yarn add sass bootstrap bootstrap-icons @popperjs/core"
 
-inject_into_file "config/initializers/assets.rb", after: /.*Rails.application.config.assets.paths.*\n/ do
-  <<~RUBY
-    Rails.application.config.assets.paths << Rails.root.join("node_modules/bootstrap-icons/font")
-  RUBY
+if Rails.root.join("config/initializers/assets.rb").exist?
+  inject_into_file "config/initializers/assets.rb", after: /.*Rails.application.config.assets.paths.*\n/ do
+    <<~RUBY
+      Rails.application.config.assets.paths << Rails.root.join("node_modules/bootstrap-icons/font")
+    RUBY
+  end
+else
+  say %(Add Rails.application.config.assets.paths << Rails.root.join("node_modules/bootstrap-icons/font") in your assets configuration file (by convention in "config/initializers/assets.rb")), :red
 end
 
 if Rails.root.join("app/javascript/application.js").exist?
