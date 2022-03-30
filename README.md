@@ -21,9 +21,8 @@ You can configure your bundler options in the `build:css` script in `package.jso
 
 You must already have node and yarn installed on your system. You will also need npx version 7.1.0 or later. Then:
 
-1. Add `cssbundling-rails` to your Gemfile with `gem 'cssbundling-rails'`
-2. Run `./bin/bundle install`
-3. Run `./bin/rails css:install:[tailwind|bootstrap|bulma|postcss|sass]`
+1. Run `./bin/bundle add cssbundling-rails`
+2. Run `./bin/rails css:install:[tailwind|bootstrap|bulma|postcss|sass]`
 
 Or, in Rails 7+, you can preconfigure your new application to use a specific bundler with `rails new myapp --css [tailwind|bootstrap|bulma|postcss|sass]`.
 
