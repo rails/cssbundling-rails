@@ -41,6 +41,10 @@ If you want to use `@import` statements as part of your Tailwind application.js 
 
 Some CSS packages use new CSS features that are not supported by the default SassC rails integration that previous versions of Rails used. If you hit such an incompatibility, it'll likely be in the form of a `SassC::SyntaxError` when running `assets:precompile`. The fix is to `bundle remove sass-rails` (or `sassc-rails`, if you were using that).
 
+### Why do I get `application.css not in asset pipeline` in production?
+
+A common issue is that your repository does not contain the output directory used by the build commands. You must have `app/assets/builds` available. Add the directory with a `.gitkeep` file, and you'll ensure it's available in production.
+
 ## License
 
 CSS Bundling for Rails is released under the [MIT License](https://opensource.org/licenses/MIT).
