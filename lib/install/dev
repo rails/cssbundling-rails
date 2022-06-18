@@ -3,7 +3,7 @@
 if ! foreman version &> /dev/null
 then
   echo "Installing foreman..."
-  gem install foreman
+  gem install --user-install foreman
 fi
 
 foreman start -f Procfile.dev "$@"
