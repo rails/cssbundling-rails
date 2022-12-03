@@ -12,25 +12,29 @@ This also happens in testing where the bundler attaches to the `test:prepare` ta
 
 If your test framework does not define a `test:prepare` Rake task, ensure that your test framework runs `css:build` to bundle stylesheets before testing commences. If your setup uses [jsbundling-rails](https://github.com/rails/jsbundling-rails) (ie, esbuild + tailwind), you will also need to run `javascript:build`.
 
-That's it!
-
 You can configure your bundler options in the `build:css` script in `package.json` or via the installer-generated `tailwind.config.js` for Tailwind or `postcss.config.js` for PostCSS.
 
 
 ## Installation
 
 You must already have node and yarn installed on your system. You will also need npx version 7.1.0 or later. Then:
+
 Run `./bin/bundle add cssbundling-rails`
 
 For Bootstrap, Bulma, Postcss, or SASS:
+
 Run `./bin/rails css:install:[bootstrap|bulma|postcss|sass]`
 
 For Tailwind:
+
 `./bin/bundle add tailwindcss-rails`
+
 `./bin/rails tailwindcss:install`
 
 For Dart:
+
 `./bin/bundle add dartcss-rails`
+
 `./bin/rails dartcss:install`
 
 
