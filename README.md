@@ -1,6 +1,6 @@
 # CSS Bundling for Rails
 
-Use [Bootstrap](https://getbootstrap.com/), [Bulma](https://bulma.io/), [PostCSS](https://postcss.org), or [Dart Sass](https://sass-lang.com/) to bundle and process your CSS, then deliver it via the asset pipeline in Rails. This gem provides installers to get you going with the bundler of your choice in a new Rails application, and a convention to use `app/assets/builds` to hold your bundled output as artifacts that are not checked into source control (the installer adds this directory to `.gitignore` by default).
+Use [Tailwind](https://tailwindcss.com/), [Bootstrap](https://getbootstrap.com/), [Bulma](https://bulma.io/), [PostCSS](https://postcss.org), or [Dart Sass](https://sass-lang.com/) to bundle and process your CSS, then deliver it via the asset pipeline in Rails. This gem provides installers to get you going with the bundler of your choice in a new Rails application, and a convention to use `app/assets/builds` to hold your bundled output as artifacts that are not checked into source control (the installer adds this directory to `.gitignore` by default).
 
 You develop using this approach by running the bundler in watch mode in a terminal with `yarn build:css --watch` (and your Rails server in another, if you're not using something like [puma-dev](https://github.com/puma/puma-dev)). You can also use `./bin/dev`, which will start both the Rails server and the CSS build watcher (along with a JS build watcher, if you're also using `jsbundling-rails`).
 
@@ -20,18 +20,16 @@ You can configure your bundler options in the `build:css` script in `package.jso
 ## Installation
 
 You must already have node and yarn installed on your system. You will also need npx version 7.1.0 or later. Then:
+Run `./bin/bundle add cssbundling-rails`
 
-1. Run `./bin/bundle add cssbundling-rails`
-2. Run `./bin/rails css:install:[bootstrap|bulma|postcss|sass]`
-
+For Bootstrap, Bulma, Postcss, or SASS:
+Run `./bin/rails css:install:[bootstrap|bulma|postcss|sass]`
 
 For Tailwind:
-Also run:
 `./bin/bundle add tailwindcss-rails`
 `./bin/rails tailwindcss:install`
 
 For Dart:
-Also run:
 `./bin/bundle add dartcss-rails`
 `./bin/rails dartcss:install`
 
