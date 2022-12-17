@@ -45,6 +45,9 @@ Some CSS packages use new CSS features that are not supported by the default Sas
 
 A common issue is that your repository does not contain the output directory used by the build commands. You must have `app/assets/builds` available. Add the directory with a `.gitkeep` file, and you'll ensure it's available in production.
 
+### Tailwind
+Tailwind fails if your view files don't have the `.html` format in their file names. See `tailwind.config.js`
+
 ## License
 
 CSS Bundling for Rails is released under the [MIT License](https://opensource.org/licenses/MIT).
