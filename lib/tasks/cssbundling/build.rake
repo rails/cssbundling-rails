@@ -2,14 +2,12 @@ namespace :css do
   desc "Build your CSS bundle"
   task :build do
     unless system "yarn install && yarn build:css"
-      raise "cssbundling-rails: Command css:build failed, ensure yarn is installed and `yarn build:css` runs without errors or use CSS_BUILD=false env variable"
+      raise "cssbundling-rails: Command css:build failed, ensure yarn is installed and `yarn build:css` runs without errors or use SKIP_CSS_BUILD env variable"
     end
   end
 end
 
-skip_css_build = %w(no false n f).include?(ENV["CSS_BUILD"])
-
-unless skip_css_build
+unless ENV['SKIP_CSS_BUILD']
   if Rake::Task.task_defined?("assets:precompile")
     Rake::Task["assets:precompile"].enhance(["css:build"])
   end
