@@ -45,6 +45,14 @@ Some CSS packages use new CSS features that are not supported by the default Sas
 
 A common issue is that your repository does not contain the output directory used by the build commands. You must have `app/assets/builds` available. Add the directory with a `.gitkeep` file, and you'll ensure it's available in production.
 
+### Why isn't Rails using my updated css files?
+
+Watch out - if you precompile your files locally, those will be served over the dynamically created ones you expect. The solution:
+
+```shell
+rails assets:clobber 
+```
+
 ## License
 
 CSS Bundling for Rails is released under the [MIT License](https://opensource.org/licenses/MIT).
