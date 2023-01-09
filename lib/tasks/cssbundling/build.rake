@@ -7,7 +7,7 @@ namespace :css do
   end
 end
 
-unless ENV['SKIP_CSS_BUILD']
+unless ENV["SKIP_CSS_BUILD"]
   if Rake::Task.task_defined?("assets:precompile")
     Rake::Task["assets:precompile"].enhance(["css:build"])
   end
