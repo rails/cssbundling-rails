@@ -8,9 +8,7 @@ Whenever the bundler detects changes to any of the stylesheet files in your proj
 
 When you deploy your application to production, the `css:build` task attaches to the `assets:precompile` task to ensure that all your package dependencies from `package.json` have been installed via yarn, and then runs `yarn build:css` to process your stylesheet entrypoint, as it would in development. This output is then picked up by the asset pipeline, digested, and copied into public/assets, as any other asset pipeline file.
 
-This also happens in testing where the bundler attaches to the `test:prepare` task to ensure the stylesheets have been bundled before testing commences. (Note that this currently only applies to rails `test:*` tasks (like `test:all` or `test:controllers`), not "rails test", as that doesn't load `test:prepare`).
-
-If your test framework does not define a `test:prepare` Rake task, ensure that your test framework runs `css:build` to bundle stylesheets before testing commences. If your setup uses [jsbundling-rails](https://github.com/rails/jsbundling-rails) (ie, esbuild + tailwind), you will also need to run `javascript:build`.
+This also happens in testing where the bundler attaches to the `test:prepare` task to ensure the stylesheets have been bundled before testing commences. If your test framework does not call the `test:prepare` Rake task, ensure that your test framework runs `css:build` to bundle stylesheets before testing commences. If your setup uses [jsbundling-rails](https://github.com/rails/jsbundling-rails) (ie, esbuild + tailwind), you will also need to run `javascript:build`.
 
 That's it!
 
