@@ -14,6 +14,8 @@ unless ENV["SKIP_CSS_BUILD"]
 
   if Rake::Task.task_defined?("test:prepare")
     Rake::Task["test:prepare"].enhance(["css:build"])
+  elsif Rake::Task.task_defined?("spec:prepare")
+    Rake::Task["spec:prepare"].enhance(["css:build"])
   elsif Rake::Task.task_defined?("db:test:prepare")
     Rake::Task["db:test:prepare"].enhance(["css:build"])
   end
