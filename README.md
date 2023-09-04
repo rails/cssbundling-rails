@@ -45,7 +45,7 @@ A common issue is that your repository does not contain the output directory use
 
 ### How do I avoid `ActionView::Template::Error: Error: Function rgb is missing argument $green`?
 
-This might happen if your Gemfile.lock contains the legacy `sassc-rails`, which might be need while progressively migrating your project, or which might be a transitive dependency of a gem your project depends on and over which you have no control. In this case, prevent Sprockets from bundling the CSS, as it is now taken care of by this gem. Make sure do this for all environments, not only production, otherwise your test suite may fail.
+This might happen if your Gemfile.lock contains the legacy `sassc-rails`, which might be need while progressively migrating your project, or which might be a transitive dependency of a gem your project depends on and over which you have no control. In this case, prevent Sprockets from bundling the CSS on top of the bundling already performed by this gem. Make sure do this for all environments, not only production, otherwise your test suite may fail.
 
 ```
 # config/initializers/assets.rb
