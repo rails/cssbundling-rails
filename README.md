@@ -43,6 +43,15 @@ Some CSS packages use new CSS features that are not supported by the default Sas
 
 A common issue is that your repository does not contain the output directory used by the build commands. You must have `app/assets/builds` available. Add the directory with a `.gitkeep` file, and you'll ensure it's available in production.
 
+### How do I avoid `ActionView::Template::Error: Error: Function rgb is missing argument $green`?
+
+This might happen if your Gemfile.lock contains the legacy `sassc-rails`, which might be need while progressively migrating your project, or which might be a transitive dependency of a gem your project depends on and over which you have no control. In this case, prevent Sprockets from bundling the CSS, as it is now taken care of by this gem. Make sure do this for all environments, not only production, otherwise your test suite may fail.
+
+```
+# config/initializers/assets.rb
+Rails.application.config.assets.css_compressor = nil
+```
+
 ### Why isn't Rails using my updated css files?
 
 Watch out - if you precompile your files locally, those will be served over the dynamically created ones you expect. The solution:
