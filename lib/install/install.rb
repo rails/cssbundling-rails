@@ -1,3 +1,6 @@
+require_relative "helpers"
+self.extend Helpers
+
 say "Build into app/assets/builds"
 empty_directory "app/assets/builds"
 keep_file "app/assets/builds"
@@ -41,10 +44,10 @@ unless Rails.root.join("package.json").exist?
 end
 
 if Rails.root.join("Procfile.dev").exist?
-  append_to_file "Procfile.dev", "css: yarn build:css --watch\n"
+  append_to_file "Procfile.dev", "css: #{bundler_run_cmd} build:css --watch\n"
 else
   say "Add default Procfile.dev"
-  copy_file "#{__dir__}/Procfile.dev", "Procfile.dev"
+  copy_file "#{__dir__}/#{using_bun? ? "Procfile_for_bun" : "Procfile_for_node"}", "Procfile.dev"
 
   say "Ensure foreman is installed"
   run "gem install foreman"

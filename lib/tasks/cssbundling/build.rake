@@ -1,18 +1,36 @@
 namespace :css do
   desc "Install JavaScript dependencies"
   task :install do
-    unless system "yarn install"
-      raise "cssbundling-rails: Command install failed, ensure yarn is installed"
+    command = install_command
+    unless system(command)
+      raise "cssbundling-rails: Command install failed, ensure #{command.split.first} is installed"
     end
   end
 
   desc "Build your CSS bundle"
   build_task = task :build do
-    unless system "yarn build:css"
-      raise "cssbundling-rails: Command css:build failed, ensure yarn is installed and `yarn build:css` runs without errors or use SKIP_CSS_BUILD env variable"
+    command = build_command
+    unless system(command)
+      raise "cssbundling-rails: Command build failed, ensure `#{command}` runs without errors"
     end
   end
-  build_task.prereqs << :install unless ENV["SKIP_YARN_INSTALL"]
+  build_task.prereqs << :install unless ENV["SKIP_YARN_INSTALL"] || ENV["SKIP_BUN_INSTALL"]
+end
+
+def install_command
+  return "bun install" if File.exist?('bun.lockb') || (tool_exists?('bun') && !File.exist?('yarn.lock'))
+  return "yarn install" if File.exist?('yarn.lock') || tool_exists?('yarn')
+  raise "cssbundling-rails: No suitable tool found for installing JavaScript dependencies"
+end
+
+def build_command
+  return "bun run build:css" if File.exist?('bun.lockb') || (tool_exists?('bun') && !File.exist?('yarn.lock'))
+  return "yarn build:css" if File.exist?('yarn.lock') || tool_exists?('yarn')
+  raise "cssbundling-rails: No suitable tool found for building CSS"
+end
+
+def tool_exists?(tool)
+  system "command -v #{tool} > /dev/null"
 end
 
 unless ENV["SKIP_CSS_BUILD"]
