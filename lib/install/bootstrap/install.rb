@@ -22,7 +22,7 @@ end
 add_package_json_script("build:css:compile", "sass ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules")
 add_package_json_script("build:css:prefix", "postcss ./app/assets/builds/application.css --use=autoprefixer --output=./app/assets/builds/application.css")
 add_package_json_script("build:css", "#{bundler_run_cmd} build:css:compile && #{bundler_run_cmd} build:css:prefix")
-add_package_json_script("watch:css", "nodemon --watch ./app/assets/stylesheets/ --ext scss --exec \"#{bundler_run_cmd} build:css\"", false)
+add_package_json_script("watch:css", "nodemon --watch ./app/assets/stylesheets/ --ext scss --exec \\\"#{bundler_run_cmd} build:css\\\"", false)
 
 gsub_file "Procfile.dev", "build:css --watch", "watch:css"
 
