@@ -3,7 +3,7 @@ self.extend Helpers
 
 say "Install Sass"
 copy_file "#{__dir__}/application.sass.scss", "app/assets/stylesheets/application.sass.scss"
-run "#{bundler_cmd} add sass"
+run "#{bundler_cmd} add sass modern-normalize"
 
 say "Add build:css script"
 add_package_json_script "build:css",
