@@ -25,6 +25,7 @@ module Cssbundling
       case tool
       when :bun then "bun install"
       when :yarn then "yarn install"
+      when :npm then "npm install"
       else raise "cssbundling-rails: No suitable tool found for installing JavaScript dependencies"
       end
     end
@@ -33,6 +34,7 @@ module Cssbundling
       case tool
       when :bun then "bun run build:css"
       when :yarn then "yarn build:css"
+      when :npm then "npm run build:css"
       else raise "cssbundling-rails: No suitable tool found for building CSS"
       end
     end
@@ -41,8 +43,10 @@ module Cssbundling
       case
       when File.exist?('bun.lockb') then :bun
       when File.exist?('yarn.lock') then :yarn
+      when File.exist?('package-lock.json') then :npm
       when tool_exists?('bun') then :bun
       when tool_exists?('yarn') then :yarn
+      when tool_exists?('npm') then :npm
       end
     end
 
