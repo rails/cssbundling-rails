@@ -60,6 +60,15 @@ Watch out - if you precompile your files locally, those will be served over the 
 rails assets:clobber 
 ```
 
+### How do I include 3rd party stylesheets from `node_modules` in my bundle?
+
+Use an `@import` statement and path to a specific stylesheet, omitting the `node_modules/` segment and the file's extension. For example:
+
+```scss
+/* Desired file is at at node_modules/select2/dist/css/select2.css */
+@import "select2/dist/css/select2";
+```
+
 ## License
 
 CSS Bundling for Rails is released under the [MIT License](https://opensource.org/licenses/MIT).
