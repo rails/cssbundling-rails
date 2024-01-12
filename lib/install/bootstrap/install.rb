@@ -19,6 +19,19 @@ else
   say %(Add import * as bootstrap from "bootstrap" to your entry point JavaScript file), :red
 end
 
+if Rails.root.join("config/importmap.rb").exist?
+  say "Pin Bootstrap"
+  append_to_file "config/importmap.rb", %(pin "bootstrap", to: "bootstrap.min.js"\n)
+
+  inject_into_file "config/initializers/assets.rb", after: /.*Rails.application.config.assets.paths.*\n/ do
+    <<~RUBY
+      Rails.application.config.assets.paths << Rails.root.join("node_modules/bootstrap/dist/js")
+    RUBY
+  end
+
+  append_to_file "config/initializers/assets.rb", %(Rails.application.config.assets.precompile << "bootstrap.min.js")
+end
+
 add_package_json_script("build:css:compile", "sass ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules")
 add_package_json_script("build:css:prefix", "postcss ./app/assets/builds/application.css --use=autoprefixer --output=./app/assets/builds/application.css")
 add_package_json_script("build:css", "#{bundler_run_cmd} build:css:compile && #{bundler_run_cmd} build:css:prefix")
