@@ -1,6 +1,8 @@
 require_relative "../helpers"
 self.extend Helpers
 
+apply "#{__dir__}/../install.rb"
+
 say "Install Tailwind (+PostCSS w/ autoprefixer)"
 copy_file "#{__dir__}/tailwind.config.js", "tailwind.config.js"
 copy_file "#{__dir__}/application.tailwind.css", "app/assets/stylesheets/application.tailwind.css"
