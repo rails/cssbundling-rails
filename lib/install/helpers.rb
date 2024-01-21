@@ -21,7 +21,7 @@ module Helpers
     if using_bun?
       package_json = JSON.parse(File.read("package.json"))
       package_json["scripts"] ||= {}
-      package_json["scripts"][name] = script
+      package_json["scripts"][name] = script.gsub('\\"', '"')
       File.write("package.json", JSON.pretty_generate(package_json))
       run %(bun run #{name}) if run_script
     else
