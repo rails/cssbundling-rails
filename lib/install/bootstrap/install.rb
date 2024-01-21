@@ -1,6 +1,8 @@
 require_relative "../helpers"
 self.extend Helpers
 
+apply "#{__dir__}/../install.rb"
+
 say "Install Bootstrap with Bootstrap Icons, Popperjs/core and Autoprefixer"
 copy_file "#{__dir__}/application.bootstrap.scss",
    "app/assets/stylesheets/application.bootstrap.scss"
