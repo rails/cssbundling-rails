@@ -7,7 +7,7 @@ say "Install UnoCSS (via PostCSS + Autoprefixer)"
 copy_file "#{__dir__}/application.uno.css", "app/assets/stylesheets/application.uno.css"
 copy_file "#{__dir__}/uno.config.js", "uno.config.js"
 copy_file "#{__dir__}/postcss.config.js", "postcss.config.js"
-run "#{bundler_cmd} add @unocss/postcss@latest postcss@latest postcss-cli@latest autoprefixer@latest"
+run "#{bundler_cmd} add @unocss/postcss@latest unocss@latest postcss@latest postcss-cli@latest autoprefixer@latest"
 
 
 say "Add build:css script"
