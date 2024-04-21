@@ -1,7 +1,6 @@
 {
   "name": "app",
   "private": "true",
-  "type": "module",
   "scripts": {
     "build:css": "postcss ./app/assets/stylesheets/application.uno.css -o ./app/assets/builds/application.css"
   }
