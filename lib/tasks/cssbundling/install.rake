@@ -24,5 +24,11 @@ namespace :css do
     task :bulma do
       system "#{RbConfig.ruby} ./bin/rails app:template LOCATION=#{File.expand_path("../../install/bulma/install.rb",  __dir__)}"
     end
+
+    desc "Install UnoCSS"
+    task :unocss do
+      system "#{RbConfig.ruby} ./bin/rails app:template LOCATION=#{File.expand_path("../../install/unocss/install.rb",  __dir__)}"
+    end
+
   end
 end
