@@ -1,6 +1,6 @@
 # CSS Bundling for Rails
 
-Use [Tailwind CSS](https://tailwindcss.com), [Bootstrap](https://getbootstrap.com/), [Bulma](https://bulma.io/), [PostCSS](https://postcss.org), or [Dart Sass](https://sass-lang.com/) to bundle and process your CSS, then deliver it via the asset pipeline in Rails. This gem provides installers to get you going with the bundler of your choice in a new Rails application, and a convention to use `app/assets/builds` to hold your bundled output as artifacts that are not checked into source control (the installer adds this directory to `.gitignore` by default).
+Use [Tailwind CSS](https://tailwindcss.com), [Bootstrap](https://getbootstrap.com/), [Bulma](https://bulma.io/), [PostCSS](https://postcss.org), [Dart Sass](https://sass-lang.com/), or [UnoCSS](https://unocss.dev/) to bundle and process your CSS, then deliver it via the asset pipeline in Rails. This gem provides installers to get you going with the bundler of your choice in a new Rails application, and a convention to use `app/assets/builds` to hold your bundled output as artifacts that are not checked into source control (the installer adds this directory to `.gitignore` by default).
 
 You develop using this approach by running the bundler in watch mode in a terminal with `yarn build:css --watch` (and your Rails server in another, if you're not using something like [puma-dev](https://github.com/puma/puma-dev)). You can also use `./bin/dev`, which will start both the Rails server and the CSS build watcher (along with a JS build watcher, if you're also using `jsbundling-rails`).
 
@@ -12,7 +12,7 @@ This also happens in testing where the bundler attaches to the `test:prepare` ta
 
 That's it!
 
-You can configure your bundler options in the `build:css` script in `package.json` or via the installer-generated `tailwind.config.js` for Tailwind or `postcss.config.js` for PostCSS.
+You can configure your bundler options in the `build:css` script in `package.json` or via the installer-generated `tailwind.config.js` for Tailwind, `postcss.config.js` for PostCSS, or `uno.config.js` for UnoCSS.
 
 
 ## Installation
@@ -20,9 +20,9 @@ You can configure your bundler options in the `build:css` script in `package.jso
 You must already have node and yarn installed on your system. You will also need npx version 7.1.0 or later. Then:
 
 1. Run `./bin/bundle add cssbundling-rails`
-2. Run `./bin/rails css:install:[tailwind|bootstrap|bulma|postcss|sass]`
+2. Run `./bin/rails css:install:[tailwind|bootstrap|bulma|postcss|sass|unocss]`
 
-Or, in Rails 7+, you can preconfigure your new application to use a specific bundler with `rails new myapp --css [tailwind|bootstrap|bulma|postcss|sass]`.
+Or, in Rails 7+, you can preconfigure your new application to use a specific bundler with `rails new myapp --css [tailwind|bootstrap|bulma|postcss|sass|unocss]`.
 
 
 ## FAQ
