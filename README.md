@@ -22,14 +22,15 @@ You must already have node and yarn installed on your system. You will also need
 1. Run `./bin/bundle add cssbundling-rails`
 2. Run `./bin/rails css:install:[tailwind|bootstrap|bulma|postcss|sass]`
 
-Or, in Rails 7+, you can preconfigure your new application to use a specific bundler with `rails new myapp --css [tailwind|bootstrap|bulma|postcss|sass]`.
-
+Or, in Rails 7+, you can preconfigure your new application to use `cssbundling-rails` for `bootstrap`, `bulma` or `postcss` with `rails new myapp --css [bootstrap|bulma|postcss]`.
 
 ## FAQ
 
 ### How does this compare to tailwindcss-rails and dartsass-rails?
 
 If you're already relying on Node to process your JavaScript, this gem is the way to go. But if you're using [the default import map setup in Rails 7+](https://github.com/rails/importmap-rails/), you can avoid having to deal with Node at all by using the standalone versions of Tailwind CSS and Dart Sass that are available through [tailwindcss-rails](https://github.com/rails/tailwindcss-rails/) and [dartsass-rails](https://github.com/rails/dartsass-rails/). It's simpler, fewer moving parts, and still has all the functionality.
+
+In Rails 7+, you can preconfigure your new application to use `tailwindcss-rails` and `dartsass-rails` with `rails new myapp --css [tailwind|sass]`.
 
 ### How do I import relative CSS files with Tailwind?
 
