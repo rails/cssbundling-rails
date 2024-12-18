@@ -2,11 +2,23 @@ require 'json'
 
 module Helpers
   def bundler_cmd
-    using_bun? ? "bun" : "yarn"
+    if using_bun?
+      "bun"
+    elsif tool_exists?('yarnpkg')
+      "yarnpkg"
+    else
+      "yarn"
+    end
   end
 
   def bundler_run_cmd
-    using_bun? ? "bun run" : "yarn"
+    if using_bun?
+      "bun"
+    elsif tool_exists?('yarnpkg')
+      "yarnpkg"
+    else
+      "yarn"
+    end
   end
 
   def using_bun?
@@ -29,11 +41,11 @@ module Helpers
       when 7.1...8.0
         say "Add #{name} script"
         run %(npm set-script #{name} "#{script}")
-        run %(yarn #{name}) if run_script
+        tool_exists?("yarnpkg") ? (run %(yarnpkg #{name}) if run_script) : (run %(yarn #{name}) if run_script)
       when (8.0..)
         say "Add #{name} script"
         run %(npm pkg set scripts.#{name}="#{script}")
-        run %(yarn #{name}) if run_script
+        tool_exists?("yarnpkg") ? (run %(yarnpkg #{name}) if run_script) : (run %(yarn #{name}) if run_script)
       else
         say %(Add "scripts": { "#{name}": "#{script}" } to your package.json), :green
       end
