@@ -9,4 +9,4 @@ run "#{bundler_cmd} add tailwindcss@latest @tailwindcss/cli@latest"
 
 say "Add build:css script"
 add_package_json_script "build:css",
-  "npx @tailwindcss/cli -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
+  "#{bundler_x_cmd} @tailwindcss/cli -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
