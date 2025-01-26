@@ -10,7 +10,9 @@ module Helpers
   end
 
   def using_bun?
-    File.exist?('bun.lockb') || (tool_exists?('bun') && !File.exist?('yarn.lock'))
+    tool_exists?('bun') && (File.exist?('bun.lockb') || 
+                            File.exist?('bun.lock') ||       
+                            File.exist?('yarn.lock'))
   end
 
   def tool_exists?(tool)
