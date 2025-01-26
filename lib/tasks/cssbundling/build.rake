@@ -40,17 +40,17 @@ module Cssbundling
 
     def build_command
       case tool
-      when using_tool?(:bun) then "bun run build:css"
-      when using_tool?(:yarn) then "yarn build:css"
-      when using_tool?(:pnpm) then "pnpm build:css"
-      when using_tool?(:npm) then "npm run build:css"
+      when tool_exists?(:bun) then "bun run build:css"
+      when tool_exists?(:yarn) then "yarn build:css"
+      when tool_exists?(:pnpm) then "pnpm build:css"
+      when tool_exists?(:npm) then "npm run build:css"
       else raise "cssbundling-rails: No suitable tool found for building CSS"
       end
     end
 
     private
 
-    def using_tool?(tool)
+    def tool_exists?(tool)
       system "command -v #{tool} > /dev/null" && LOCK_FILES[tool].any? { |file| File.exist?(file) }
     end
   end
