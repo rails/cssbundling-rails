@@ -29,21 +29,21 @@ module Cssbundling
     }
 
     def install_command
-      case tool
-      when :bun then "bun install"
-      when :yarn then "yarn install"
-      when :pnpm then "pnpm install"
-      when :npm then "npm install"
+      case
+      when using_tool?(:bun) then "bun install"
+      when using_tool?(:yarn) then "yarn install"
+      when using_tool?(:pnpm) then "pnpm install"
+      when using_tool?(:npm) then "npm install"
       else raise "cssbundling-rails: No suitable tool found for installing JavaScript dependencies"
       end
     end
 
     def build_command
-      case tool
-      when tool_exists?(:bun) then "bun run build:css"
-      when tool_exists?(:yarn) then "yarn build:css"
-      when tool_exists?(:pnpm) then "pnpm build:css"
-      when tool_exists?(:npm) then "npm run build:css"
+      case
+      when using_tool?(:bun) then "bun run build:css"
+      when using_tool?(:yarn) then "yarn build:css"
+      when using_tool?(:pnpm) then "pnpm build:css"
+      when using_tool?(:npm) then "npm run build:css"
       else raise "cssbundling-rails: No suitable tool found for building CSS"
       end
     end
@@ -51,7 +51,11 @@ module Cssbundling
     private
 
     def tool_exists?(tool)
-      system "command -v #{tool} > /dev/null" && LOCK_FILES[tool].any? { |file| File.exist?(file) }
+      system "command -v #{tool} > /dev/null"
+    end
+
+    def using_tool?(tool)
+      tool_exists?(tool) && LOCK_FILES[tool].any? { |file| File.exist?(file) }
     end
   end
 end
