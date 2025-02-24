@@ -1,5 +1,5 @@
 namespace :css do
-  desc "Install JavaScript dependencies"
+  desc "Install CSS dependencies"
   task :install do
     command = Cssbundling::Tasks.install_command
     unless system(command)
