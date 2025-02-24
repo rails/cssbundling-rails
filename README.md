@@ -12,8 +12,7 @@ This also happens in testing where the bundler attaches to the `test:prepare` ta
 
 That's it!
 
-You can configure your bundler options in the `build:css` script in `package.json` or via the installer-generated `tailwind.config.js` for Tailwind or `postcss.config.js` for PostCSS.
-
+You can configure your bundler options in the `build:css` script in `package.json` or `postcss.config.js` for PostCSS.
 
 ## Installation
 
@@ -34,7 +33,13 @@ In Rails 7+, you can preconfigure your new application to use `tailwindcss-rails
 
 ### How do I import relative CSS files with Tailwind?
 
-If you want to use `@import` statements as part of your Tailwind application.js file, you need to [configure Tailwind to use `postcss` and then `postcss-import`](https://tailwindcss.com/docs/using-with-preprocessors#build-time-imports). But you should also consider simply referring to your other CSS files directly, instead of bundling them all into one big file. It's better for caching, and it's simpler to setup. You can refer to other CSS files by expanding the `stylesheet_link_tag` in `application.html.erb` like so: `<%= stylesheet_link_tag "application", "other", "styles", "data-turbo-track": "reload" %>`.
+Tailwind CSS 4 is configured using native CSS. Instead of bundling all your CSS into a single file, consider referencing individual CSS files directly. This approach simplifies setup and improves caching performance. To reference multiple CSS files in Rails, update the stylesheet_link_tag in application.html.erb like this:
+
+```erb
+<%= stylesheet_link_tag "application", "other", "styles", "data-turbo-track": "reload" %>
+```
+
+This ensures your files are properly linked and ready to use.
 
 ### How do I avoid SassC::SyntaxError exceptions on existing projects?
 
@@ -58,7 +63,7 @@ Rails.application.config.assets.css_compressor = nil
 Watch out - if you precompile your files locally, those will be served over the dynamically created ones you expect. The solution:
 
 ```shell
-rails assets:clobber 
+rails assets:clobber
 ```
 
 ### How do I include 3rd party stylesheets from `node_modules` in my bundle?
