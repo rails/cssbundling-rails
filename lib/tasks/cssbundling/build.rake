@@ -21,41 +21,41 @@ module Cssbundling
   module Tasks
     extend self
 
+    LOCK_FILES = {
+      bun: %w[bun.lockb bun.lock yarn.lock],
+      yarn: %w[yarn.lock],
+      pnpm: %w[pnpm-lock.yaml],
+      npm: %w[package-lock.json]
+    }
+
     def install_command
-      case tool
-      when :bun then "bun install"
-      when :yarn then "yarn install"
-      when :pnpm then "pnpm install"
-      when :npm then "npm install"
+      case
+      when using_tool?(:bun) then "bun install"
+      when using_tool?(:yarn) then "yarn install"
+      when using_tool?(:pnpm) then "pnpm install"
+      when using_tool?(:npm) then "npm install"
       else raise "cssbundling-rails: No suitable tool found for installing JavaScript dependencies"
       end
     end
 
     def build_command
-      case tool
-      when :bun then "bun run build:css"
-      when :yarn then "yarn build:css"
-      when :pnpm then "pnpm build:css"
-      when :npm then "npm run build:css"
+      case
+      when using_tool?(:bun) then "bun run build:css"
+      when using_tool?(:yarn) then "yarn build:css"
+      when using_tool?(:pnpm) then "pnpm build:css"
+      when using_tool?(:npm) then "npm run build:css"
       else raise "cssbundling-rails: No suitable tool found for building CSS"
       end
     end
 
-    def tool
-      case
-      when File.exist?('bun.lockb') then :bun
-      when File.exist?('yarn.lock') then :yarn
-      when File.exist?('pnpm-lock.yaml') then :pnpm
-      when File.exist?('package-lock.json') then :npm
-      when tool_exists?('bun') then :bun
-      when tool_exists?('yarn') then :yarn
-      when tool_exists?('pnpm') then :pnpm
-      when tool_exists?('npm') then :npm
-      end
-    end
+    private
 
     def tool_exists?(tool)
       system "command -v #{tool} > /dev/null"
+    end
+
+    def using_tool?(tool)
+      tool_exists?(tool) && LOCK_FILES[tool].any? { |file| File.exist?(file) }
     end
   end
 end
