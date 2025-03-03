@@ -23,15 +23,15 @@ end
 
 if Rails.root.join("config/importmap.rb").exist?
   say "Pin Bootstrap"
-  append_to_file "config/importmap.rb", %(pin "bootstrap", to: "bootstrap.min.js"\n)
+  append_to_file "config/importmap.rb", %(pin "bootstrap", to: "bootstrap.bundle.min.js"\n)
 
-  inject_into_file "config/initializers/assets.rb", after: /.*Rails.application.config.assets.paths.*\n/ do
+  inject_into_file "config/initializers/assets.rb", after: /.*\/bootstrap-icons\/font.*\n/ do
     <<~RUBY
       Rails.application.config.assets.paths << Rails.root.join("node_modules/bootstrap/dist/js")
     RUBY
   end
 
-  append_to_file "config/initializers/assets.rb", %(Rails.application.config.assets.precompile << "bootstrap.min.js")
+  append_to_file "config/initializers/assets.rb", %(Rails.application.config.assets.precompile << "bootstrap.bundle.min.js")
 end
 
 add_package_json_script("build:css:compile", "sass ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules")
