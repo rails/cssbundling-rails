@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    cssbundling-rails (1.4.1)
+    cssbundling-rails (1.4.2)
       railties (>= 6.0.0)
 
 GEM
@@ -200,6 +200,7 @@ PLATFORMS
   arm64-darwin-21
   arm64-darwin-22
   arm64-darwin-23
+  arm64-darwin-24
   x86_64-darwin-20
   x86_64-darwin-21
   x86_64-linux
