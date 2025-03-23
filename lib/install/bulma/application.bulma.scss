@@ -1,39 +1,42 @@
-// @charset "utf-8";
-
-// Import a Google Font
-// @import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
-
 // Set your brand colors
-// $purple: #8A4D76;
-// $pink: #FA7C91;
+// $purple: #8a4d76;
+// $pink: #fa7c91;
 // $brown: #757763;
-// $beige-light: #D0D1CD;
-// $beige-lighter: #EFF0EB;
+// $beige-light: #d0d1cd;
+// $beige-lighter: #eff0eb;
+//
+// Override global Sass variables from the /utilities folder
+// @use "bulma/sass/utilities" with (
+//   $family-primary: '"Nunito", sans-serif',
+//   $grey-dark: $brown,
+//   $grey-light: $beige-light,
+//   $primary: $purple,
+//   $link: $pink,
+//   $control-border-width: 2px
+// );
+//
+// Override Sass variables from the /form folder
+// @use "bulma/sass/form" with (
+//   $input-shadow: none
+// );
+//
+// Import the components you need
+// @forward "bulma/sass/base";
+// @forward "bulma/sass/components/card";
+// @forward "bulma/sass/components/modal";
+// @forward "bulma/sass/components/navbar";
+// @forward "bulma/sass/elements/button";
+// @forward "bulma/sass/elements/icon";
+// @forward "bulma/sass/elements/content";
+// @forward "bulma/sass/elements/notification";
+// @forward "bulma/sass/elements/progress";
+// @forward "bulma/sass/elements/tag";
+// @forward "bulma/sass/layout/footer";
+//
+// Import the themes so that all CSS variables have a value
+// @forward "bulma/sass/themes";
+//
+// Import the Google Font
+// @import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
 
-// Update Bulma's global variables
-// $family-sans-serif: "Nunito", sans-serif;
-// $grey-dark: $brown;
-// $grey-light: $beige-light;
-// $primary: $purple;
-// $link: $pink;
-// $widescreen-enabled: false;
-// $fullhd-enabled: false;
-
-// Update some of Bulma's component variables
-// $body-background-color: $beige-lighter;
-// $control-border-width: 2px;
-// $input-border-color: transparent;
-// $input-shadow: none;
-
-// Import only what you need from Bulma
-// @import "bulma/sass/utilities/_all.sass";
-// @import "bulma/sass/base/_all.sass";
-// @import "bulma/sass/elements/button.sass";
-// @import "bulma/sass/elements/container.sass";
-// @import "bulma/sass/elements/title.sass";
-// @import "bulma/sass/form/_all.sass";
-// @import "bulma/sass/components/navbar.sass";
-// @import "bulma/sass/layout/hero.sass";
-// @import "bulma/sass/layout/section.sass";
-
-@import 'bulma/bulma';
+@use 'bulma/bulma';
