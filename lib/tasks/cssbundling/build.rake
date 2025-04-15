@@ -22,7 +22,7 @@ module Cssbundling
     extend self
 
     LOCK_FILES = {
-      bun: %w[bun.lockb bun.lock yarn.lock],
+      bun: %w[bun.lockb bun.lock],
       yarn: %w[yarn.lock],
       pnpm: %w[pnpm-lock.yaml],
       npm: %w[package-lock.json]
