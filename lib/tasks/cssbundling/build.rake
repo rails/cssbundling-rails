@@ -51,7 +51,11 @@ module Cssbundling
     private
 
     def tool_exists?(tool)
-      system "command -v #{tool} > /dev/null"
+      if Gem.win_platform?
+        system "where #{tool} 2>nul>nul"
+      else
+        system "command -v #{tool} > /dev/null"
+      end
     end
 
     def using_tool?(tool)
