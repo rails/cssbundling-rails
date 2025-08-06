@@ -19,7 +19,7 @@ module Helpers
   end
 
   def tool_exists?(tool)
-    system "command -v #{tool} > /dev/null"
+    system("command", "-v", tool, out: File::NULL, err: File::NULL)
   end
 
   def add_package_json_script(name, script, run_script=true)
