@@ -51,7 +51,11 @@ module Cssbundling
     private
 
     def tool_exists?(tool)
-      system "command -v #{tool} > /dev/null"
+      if RUBY_PLATFORM =~ /mingw|mswin/
+        system "where #{tool} > NUL 2> NUL"
+      else
+        system "command -v #{tool} > /dev/null"
+      end
     end
 
     def using_tool?(tool)
