@@ -51,7 +51,7 @@ A common issue is that your repository does not contain the output directory use
 
 ### How do I avoid `ActionView::Template::Error: Error: Function rgb is missing argument $green`?
 
-This might happen if your Gemfile.lock contains the legacy `sassc-rails`, which might be need while progressively migrating your project, or which might be a transitive dependency of a gem your project depends on and over which you have no control. In this case, prevent Sprockets from bundling the CSS on top of the bundling already performed by this gem. Make sure do this for all environments, not only production, otherwise your test suite may fail.
+This might happen if your Gemfile.lock contains the legacy `sassc-rails`, which might be needed while progressively migrating your project, or which might be a transitive dependency of a gem your project depends on and over which you have no control. In this case, prevent Sprockets from bundling the CSS on top of the bundling already performed by this gem. Make sure do this for all environments, not only production, otherwise your test suite may fail.
 
 ```
 # config/initializers/assets.rb
@@ -71,7 +71,7 @@ rails assets:clobber
 Use an `@import` statement and path to a specific stylesheet, omitting the `node_modules/` segment and the file's extension. For example:
 
 ```scss
-/* Desired file is at at node_modules/select2/dist/css/select2.css */
+/* Desired file is at node_modules/select2/dist/css/select2.css */
 @import "select2/dist/css/select2";
 ```
 
