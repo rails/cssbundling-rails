@@ -6,7 +6,7 @@ apply "#{__dir__}/../install.rb"
 say "Install Bulma"
 copy_file "#{__dir__}/application.bulma.scss",
    "app/assets/stylesheets/application.bulma.scss"
-run "#{bundler_cmd} add sass bulma"
+run Cssbundling::PackageManager.add_command("sass bulma")
 
 say "Add build:css script"
 add_package_json_script "build:css",

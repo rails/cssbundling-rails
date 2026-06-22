@@ -1,5 +1,4 @@
-require_relative "helpers"
-self.extend Helpers
+require "cssbundling/package_manager"
 
 say "Build into app/assets/builds"
 empty_directory "app/assets/builds"
@@ -46,10 +45,11 @@ unless Rails.root.join("package.json").exist?
 end
 
 if Rails.root.join("Procfile.dev").exist?
-  append_to_file "Procfile.dev", "css: #{bundler_run_cmd} build:css --watch\n"
+  append_to_file "Procfile.dev", "css: #{Cssbundling::PackageManager.build_command(with_watch:true)}\n"
 else
   say "Add default Procfile.dev"
   copy_file "#{__dir__}/#{using_bun? ? "Procfile_for_bun.dev" : "Procfile_for_node.dev"}", "Procfile.dev"
+  gsub_file "Procfile.dev", 'css: #{npm_build_watch}', "css: #{Cssbundling::PackageManager.build_command(with_watch:true)}"
 
   say "Ensure foreman is installed"
   run "gem install foreman"
