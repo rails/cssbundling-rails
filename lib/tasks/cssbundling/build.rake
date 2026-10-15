@@ -14,7 +14,7 @@ namespace :css do
       raise "cssbundling-rails: Command build failed, ensure `#{command}` runs without errors"
     end
   end
-  build_task.prereqs << :install unless ENV["SKIP_YARN_INSTALL"] || ENV["SKIP_BUN_INSTALL"]
+  build_task.prereqs << :install unless ENV["SKIP_YARN_INSTALL"] || ENV["SKIP_BUN_INSTALL"] || ENV["SKIP_AUBE_INSTALL"]
 end
 
 module Cssbundling
@@ -22,6 +22,7 @@ module Cssbundling
     extend self
 
     LOCK_FILES = {
+      aube: %w[aube-lock.yaml],
       bun: %w[bun.lockb bun.lock],
       yarn: %w[yarn.lock],
       pnpm: %w[pnpm-lock.yaml],
@@ -30,6 +31,7 @@ module Cssbundling
 
     def install_command
       case
+      when using_tool?(:aube) then "aube ci"
       when using_tool?(:bun) then "bun install"
       when using_tool?(:yarn) then "yarn install"
       when using_tool?(:pnpm) then "pnpm install"
@@ -40,6 +42,7 @@ module Cssbundling
 
     def build_command
       case
+      when using_tool?(:aube) then "aube run build:css"
       when using_tool?(:bun) then "bun run build:css"
       when using_tool?(:yarn) then "yarn build:css"
       when using_tool?(:pnpm) then "pnpm build:css"

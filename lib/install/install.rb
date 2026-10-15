@@ -49,7 +49,15 @@ if Rails.root.join("Procfile.dev").exist?
   append_to_file "Procfile.dev", "css: #{bundler_run_cmd} build:css --watch\n"
 else
   say "Add default Procfile.dev"
-  copy_file "#{__dir__}/#{using_bun? ? "Procfile_for_bun.dev" : "Procfile_for_node.dev"}", "Procfile.dev"
+  procfile =
+    if using_aube?
+      "Procfile_for_aube.dev"
+    elsif using_bun?
+      "Procfile_for_bun.dev"
+    else
+      "Procfile_for_node.dev"
+    end
+  copy_file "#{__dir__}/#{procfile}", "Procfile.dev"
 
   say "Ensure foreman is installed"
   run "gem install foreman"

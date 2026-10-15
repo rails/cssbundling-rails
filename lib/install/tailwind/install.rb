@@ -8,5 +8,6 @@ copy_file "#{__dir__}/application.tailwind.css", "app/assets/stylesheets/applica
 run "#{bundler_cmd} add tailwindcss@latest @tailwindcss/cli@latest"
 
 say "Add build:css script"
+tailwind_cli = using_aube? ? "tailwindcss" : "@tailwindcss/cli"
 add_package_json_script "build:css",
-  "#{bundler_x_cmd} @tailwindcss/cli -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
+  "#{bundler_x_cmd} #{tailwind_cli} -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"

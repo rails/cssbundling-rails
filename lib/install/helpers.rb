@@ -2,15 +2,37 @@ require 'json'
 
 module Helpers
   def bundler_cmd
-    using_bun? ? "bun" : "yarn"
+    if using_aube?
+      "aube"
+    elsif using_bun?
+      "bun"
+    else
+      "yarn"
+    end
   end
 
   def bundler_run_cmd
-    using_bun? ? "bun run" : "yarn"
+    if using_aube?
+      "aube run"
+    elsif using_bun?
+      "bun run"
+    else
+      "yarn"
+    end
   end
 
   def bundler_x_cmd
-    using_bun? ? "bunx" : "npx"
+    if using_aube?
+      "aube exec"
+    elsif using_bun?
+      "bunx"
+    else
+      "npx"
+    end
+  end
+
+  def using_aube?
+    tool_exists?("aube") && File.exist?("aube-lock.yaml")
   end
 
   def using_bun?
@@ -23,12 +45,12 @@ module Helpers
   end
 
   def add_package_json_script(name, script, run_script=true)
-    if using_bun?
+    if using_aube? || using_bun?
       package_json = JSON.parse(File.read("package.json"))
       package_json["scripts"] ||= {}
       package_json["scripts"][name] = script.gsub('\\"', '"')
       File.write("package.json", JSON.pretty_generate(package_json))
-      run %(bun run #{name}) if run_script
+      run %(#{bundler_run_cmd} #{name}) if run_script
     else
       case `npx -v`.to_f
       when 7.1...8.0
